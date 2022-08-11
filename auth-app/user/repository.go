@@ -16,8 +16,8 @@ type repository struct {
 	db *gorm.DB
 }
 
-func NewRepository(db *gorm.DB) *repository {
-	return &repository{db}
+func NewRepository(db *gorm.DB) Repository {
+  return &repository{db:db}
 }
 
 func (r *repository) CreateUser(ctx context.Context, user models.User) error {
