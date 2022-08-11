@@ -1,6 +1,6 @@
 package user
 
-import "github.com/golang-jwt/jwt"
+import validation "github.com/go-ozzo/ozzo-validation"
 
 type RegisterUserInput struct {
 	Name  string `json:"name" binding:"required"`
@@ -13,9 +13,17 @@ type LoginInput struct {
 	Password string `json:"password" binding:"required"`
 }
 
-type TokenInput struct {
-  Name string `json:"name"`
-  Phone string `json:"phone"`
-  Role string `json:"role"`
-  jwt.StandardClaims
+func (r *RegisterUserInput) Validate() error {
+	return validation.ValidateStruct(r,
+		validation.Field(&r.Name, validation.Required),
+		validation.Field(&r.Phone, validation.Required),
+		validation.Field(&r.Role, validation.Required),
+	)
+}
+
+func (l *LoginInput) Validate() error {
+	return validation.ValidateStruct(l,
+		validation.Field(&l.Phone, validation.Required),
+		validation.Field(&l.Password, validation.Required),
+	)
 }
