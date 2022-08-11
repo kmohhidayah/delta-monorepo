@@ -23,11 +23,11 @@ type service struct {
 	repository Repository
 }
 
-func NewService(repository Repository) *service {
-	return &service{repository}
+func NewService(repository Repository) Service {
+  return &service{repository: repository}
 }
 
-func (s *service) RegisterUser(ctx context.Context, input RegisterUserInput) (*RegisterUserResponse, error) {
+func (s *service) CreateUser(ctx context.Context, input RegisterUserInput) (*RegisterUserResponse, error) {
 	password := util.RandomPassword()
 
 	hashedPass, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.MinCost)
