@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-COPY .env .
+COPY .env.example .
 
 EXPOSE 3000
 CMD ["npm", "run", "dev"]
