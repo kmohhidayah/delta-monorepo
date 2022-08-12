@@ -1,11 +1,14 @@
-FROM node:latest as builder
-WORKDIR /usr/app
+FROM node:latest
+
+WORKDIR /app
+
 COPY package*.json ./
+
 RUN npm install
+RUN npm install pm2@latest -g
 
 COPY . .
 
 COPY .env.example .env
 
-EXPOSE 3000
-CMD ["npm", "run", "dev"]
+CMD ["pm2-runtime", "./src/server.js"]
