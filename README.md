@@ -46,6 +46,6 @@ yarn dev
 ```
 #### Document C4 (Context and Deployment)
 
-![context](./docs/Screenshot 2022-08-12 20:07:47.png)
+<img title="a title" alt="Alt text" src="./docs/Screenshot 2022-08-12 20:07:47.png">
 
-![deployment](./docs/Screenshot 2022-08-12 20:02:17.png)
+<img title="a title" alt="Alt text" src="./docs/Screenshot 2022-08-12 20:02:17.png">

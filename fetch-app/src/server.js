@@ -11,7 +11,11 @@ const port = 3000;
 
 const decodeToken = (token) => {
   token = token.replace("Bearer", "");
-  const decode = jwt.verify(token, process.env.JWT_SIGNATURE, (_, decode) => decode);
+  const decode = jwt.verify(
+    token,
+    process.env.JWT_SIGNATURE,
+    (_, decode) => decode,
+  );
   return decode;
 };
 
@@ -53,7 +57,7 @@ router.get("/api/v1/products/aggregation", async (req, res) => {
     const week = moment(new Date(result.tgl_parsed) || new Date()).format("w");
 
     sizes.push(parseInt(result.size, 10));
-  
+
     return {
       year,
 
@@ -65,16 +69,21 @@ router.get("/api/v1/products/aggregation", async (req, res) => {
     };
   }) || [];
 
-res.send({
-
+  res.send({
     aggregate_by_province: _.keyBy(data, (res) => res.province),
     aggregate_by_week: _.keyBy(data, (res) => parseInt(res.week, 10)),
     aggregate_by_price: _.keyBy(data, (res) => res.price),
     average: {
       min: _.min(sizes),
-      max: _.max(sizes)
-    }
-  })
+      max: _.max(sizes),
+    },
+  });
+});
+
+router.get("/api/v1/products", async (_, res) => {
+  const request = await fetch(process.env.STEIN_EFISHERY);
+  const response = await request.json();
+  res.send(response);
 });
 
 app.use("/", router);
