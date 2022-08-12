@@ -17,7 +17,7 @@ func main(){
   userRepository := user.NewRepository(models.ConnectToDB())
   userService := user.NewService(userRepository)
   userAPI := api.NewUserAPI(userService) 
- 
+
   router := gin.Default()
   v1 := router.Group("api/v1")
   v1.POST("/users",userAPI.CreateUser)

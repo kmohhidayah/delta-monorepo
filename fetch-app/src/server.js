@@ -11,7 +11,7 @@ const port = 3000;
 
 const decodeToken = (token) => {
   token = token.replace("Bearer", "");
-  const decode = jwt.verify(token, "secret", (_, decode) => decode);
+  const decode = jwt.verify(token, process.env.JWT_SIGNATURE, (_, decode) => decode);
   return decode;
 };
 
@@ -33,8 +33,8 @@ const isAuth = (req, _, next) => {
 
 router.use(isAuth);
 
-router.get("/", async (req, res) => {
-  if (req.context.auth.roles !== "admin") {
+router.get("/api/v1/products/aggregation", async (req, res) => {
+  if (req.context.auth.role !== "admin") {
     throw new Error("Unauthorized");
   }
 
@@ -56,6 +56,7 @@ router.get("/", async (req, res) => {
   
     return {
       year,
+
       month,
       week,
       price: parseInt(result.price, 10),
@@ -65,6 +66,7 @@ router.get("/", async (req, res) => {
   }) || [];
 
 res.send({
+
     aggregate_by_province: _.keyBy(data, (res) => res.province),
     aggregate_by_week: _.keyBy(data, (res) => parseInt(res.week, 10)),
     aggregate_by_price: _.keyBy(data, (res) => res.price),

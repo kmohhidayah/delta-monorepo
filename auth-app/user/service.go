@@ -5,6 +5,7 @@ import (
 	"delta-monorepo/auth-app/models"
 	"delta-monorepo/auth-app/util"
 	"errors"
+	"os"
 	"strings"
 	"time"
 
@@ -77,7 +78,7 @@ func (s *service) Login(ctx context.Context, input LoginInput) (*LoginResponse, 
 		},
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString([]byte("SECRET"))
+	tokenString, err := token.SignedString([]byte(os.Getenv("JWT_SIGNATURE")))
 	if err != nil {
 		return nil, err
 	}
