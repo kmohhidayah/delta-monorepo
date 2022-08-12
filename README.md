@@ -44,6 +44,14 @@ cp .env.example .env
 yarn
 yarn dev
 ```
+
+#### API Documentation
+**Auth-app**
+- https://documenter.getpostman.com/view/17968129/VUjSF3hX
+
+**Fetch-App**
+- https://documenter.getpostman.com/view/17968129/VUjSF3mq
+
 #### Document C4 (Context and Deployment)
 
 <img title="a title" alt="Alt text" src="./docs/Screenshot 2022-08-12 20:07:47.png">
