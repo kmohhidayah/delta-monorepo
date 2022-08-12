@@ -12,6 +12,9 @@
 ### Docker
 
 ```bash
+# give access to exec dir db/
+chmod +x ./db/init-user-db.sh
+
 # docker build & start
 docker-compose up -d
 
