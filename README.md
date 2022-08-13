@@ -18,6 +18,8 @@ git clone https://github.com/kmohhidayah/delta-monorepo.git
 ### Docker
 
 ```bash
+cd delta-monorepo
+
 # give access to exec dir db/
 chmod +x ./db/init-user-db.sh
 
@@ -34,9 +36,13 @@ docker-compose down -v
 
 ```bash
 cd delta-monorepo
+
 cd auth-app
+
 cp .env.example .env
+
 make postgres
+
 make createdb
 ```
 
@@ -44,9 +50,13 @@ make createdb
 
 ```bash
 cd delta-monorepo
+
 cd fetch-app
+
 cp .env.example .env
+
 yarn
+
 yarn dev
 ```
 
