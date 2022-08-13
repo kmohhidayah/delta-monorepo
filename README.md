@@ -9,6 +9,12 @@
 
 ## Getting Started
 
+### Clone Project
+
+```bash
+git clone https://github.com/kmohhidayah/delta-monorepo.git
+```
+
 ### Docker
 
 ```bash
@@ -23,10 +29,6 @@ docker-compose down -v
 ```
 
 ### Manualy
-
-```bash
-git clone https://github.com/kmohhidayah/delta-monorepo.git
-```
 
 #### auth-app
 
